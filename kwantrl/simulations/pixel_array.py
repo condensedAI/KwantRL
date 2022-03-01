@@ -107,10 +107,6 @@ class pixelarrayQPC():
             self.disorder_func=self.disorder
         self.qpc = self.make_barrier(W,L)
 
-        # Plotting the gates and sites/leads and potential
-        if plot:
-            self.plot_system()
-            self.plot_potential()
 
         # self.precalc_leads_qpc=self.qpc.precalculate(self.energy)
         self.fqpc = self.qpc.finalized()
@@ -118,6 +114,11 @@ class pixelarrayQPC():
 
         self.disorder_values=make_disorder(L, W, length_scale=5,random_seed=2)
         self.pixel_disorder_values=make_pixel_disorder(L,W,self.allgatedims[1:10])
+
+        # Plotting the gates and sites/leads and potential
+        if plot:
+            self.plot_system()
+            self.plot_potential()
 
     def disorder(self,site,U0):
         x,y=site.tag
@@ -326,7 +327,7 @@ class pixelarrayQPC():
         
         
 if __name__=="__main__":
-    QPC=pixelarrayQPC(plot=False)
+    QPC=pixelarrayQPC(plot=True)
     vals=np.linspace(-2,0,100)
     result=[]
     for val in vals:
